@@ -40,3 +40,12 @@ elif decision == 2 :
     searchInfo = str(input('Buscar por: '))
     
     print(f'Resultados encontrados: {search(type, searchInfo, library)}')
+
+elif decision == 3 :
+
+    print('CADASTRO DO LIVRO')
+    title = str(input('Nome: '))
+    autor = str(input('Autor: '))
+    date = int(input('Ano: '))
+
+    library.append((f'{title}', f'{autor}', date))
