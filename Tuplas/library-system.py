@@ -8,14 +8,35 @@ library = [
     ("Os Sertões", "Euclides da Cunha", 1902)
 ]
 
-print('\nBIBLIOTECA DIGITAL\n')
-#decision = str(input(''))
+def view(estante) :
 
-
-def visualizar(estante) :
     for titulo, autor, ano in estante:
+
         print(f"Obra: {titulo} | Escrito por: {autor} ({ano})")
 
-visualizar(library)
+def search(method, info, storage):
 
+    searchResult = []
 
+    for book in storage:
+
+        if book[method-1] == info:
+
+            searchResult.append(book)
+
+    return searchResult
+            
+print('\nBIBLIOTECA DIGITAL\n')
+
+decision = int(input('Visualizar[1] Buscar[2] Adicionar[3]: '))
+
+if decision == 1 : 
+
+    view(library)
+
+elif decision == 2 :
+
+    type = int(input('Titulo[1] Autor[2] Ano[3]: '))
+    searchInfo = str(input('Buscar por: '))
+    
+    print(f'Resultados encontrados: {search(type, searchInfo, library)}')
