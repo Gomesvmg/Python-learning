@@ -25,27 +25,37 @@ def search(method, info, storage):
             searchResult.append(book)
 
     return searchResult
-            
+
 print('\nBIBLIOTECA DIGITAL\n')
 
-decision = int(input('Visualizar[1] Buscar[2] Adicionar[3]: '))
+while True :
 
-if decision == 1 : 
+    decision = int(input('Visualizar[1] Buscar[2] Adicionar[3] Sair[4]: '))
 
-    view(library)
+    if decision == 1 : 
 
-elif decision == 2 :
+        view(library)
 
-    type = int(input('Titulo[1] Autor[2] Ano[3]: '))
-    searchInfo = str(input('Buscar por: '))
-    
-    print(f'Resultados encontrados: {search(type, searchInfo, library)}')
+    elif decision == 2 :
 
-elif decision == 3 :
+        type = int(input('Titulo[1] Autor[2] Ano[3]: '))
+        searchInfo = str(input('Buscar por: '))
+        
+        print(f'Resultados encontrados: {search(type, searchInfo, library)}')
 
-    print('CADASTRO DO LIVRO')
-    title = str(input('Nome: '))
-    autor = str(input('Autor: '))
-    date = int(input('Ano: '))
+    elif decision == 3 :
 
-    library.append((f'{title}', f'{autor}', date))
+        print('CADASTRO DO LIVRO')
+        title = str(input('Nome: '))
+        autor = str(input('Autor: '))
+        date = int(input('Ano: '))
+
+        library.append((f'{title}', f'{autor}', date))
+
+    elif decision == 4 :
+
+        break
+
+    else:
+        
+        print('Resposta inválida, tente novamente!')
