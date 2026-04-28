@@ -1,29 +1,38 @@
 import random
 
-wordsOfGame = ['escola', 'lapis', 'borracha', 'caderno', 'cadeira']
+PalavrasDoJogo = ['escola', 'lapis', 'borracha', 'caderno', 'cadeira']
 
-index = random.randint(0, len(wordsOfGame)-1)
+aleNum = random.randint(0, len(PalavrasDoJogo)-1)
 
-wordSelected = wordsOfGame[index]
+PalavraSelecionada = PalavrasDoJogo[aleNum]
 
-print(wordSelected)
+print(PalavraSelecionada)
 
-numberOfCharacters = len(wordSelected)
+numeroDeLetras = len(PalavraSelecionada)
 
-eachWord = list(wordSelected)
+LetrasDaPalavra = list(PalavraSelecionada)
 
-print('_ ' * numberOfCharacters)
+display = ['_'] * numeroDeLetras #atencao
+
 
 while True :
 
-    characterInput = input('Digite uma letra: ')
+    Entrada = input('Digite uma letra: ')
 
-    if len(characterInput) > -1 :
+    if  Entrada == '0' :
 
-        print(wordSelected.find(characterInput)) 
+        break
 
-        for numLet, lett in enumerate(eachWord) :
+    else : 
 
-            if characterInput == lett :
+        cont = -1
+        
+        for cadaLetra in LetrasDaPalavra :
 
-                print(characterInput, lett, 'pos: ', numLet)
+            cont += 1
+
+            if Entrada == cadaLetra : 
+
+                display[cont] = Entrada
+
+            print(display[cont].upper(), end=' ')
