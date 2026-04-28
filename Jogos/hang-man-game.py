@@ -6,7 +6,7 @@ aleNum = random.randint(0, len(PalavrasDoJogo)-1)
 
 PalavraSelecionada = PalavrasDoJogo[aleNum]
 
-print(PalavraSelecionada)
+print('Jogo da Forca')
 
 numeroDeLetras = len(PalavraSelecionada)
 
@@ -17,7 +17,17 @@ display = ['_'] * numeroDeLetras #atencao
 
 while True :
 
-    Entrada = input('Digite uma letra: ')
+    for index in range(numeroDeLetras) :
+
+        print(display[index].upper(), end='  ')
+
+    if '_' not in display :
+
+        print('\nVocê ganhou!')
+
+        break
+
+    Entrada = input('\n\nDigite uma letra: ')
 
     if  Entrada == '0' :
 
@@ -35,4 +45,4 @@ while True :
 
                 display[cont] = Entrada
 
-            print(display[cont].upper(), end=' ')
+
