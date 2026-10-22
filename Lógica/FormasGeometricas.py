@@ -11,13 +11,16 @@ class FormaGeometrica(ABC):
 
     def __init__(self, name):
         self.name = name
-        FormaGeometrica.num_formas += 1
+        type(self).num_formas += 1
 
-    def get_cor(self) :
+    def get_name(self) :
         return self.name
-    
-    def set_cor(self, newName):
+
+    def set_name(self, newName):
         self.name = newName
+
+    def __del__ (self):
+        type(self).num_formas -= 1
 
     @abstractmethod
     def area(self):

@@ -1,53 +1,108 @@
-from formas import Quadrado, Circulo
+from FormasGeometricas import Quadrado, Circulo
 
-# while True :
-#     print('FORMAS GEOMETRICAS')
-#     decision = input('\n[1] CRIAR\n[2] MODIFICAR \n[3] EXIBIR\n[4} EXCLUIR ')
-
-#     match decision :
-
-#         case 1 :
-#             break
+shapesList = {}    
             
-            
-# def createShapes():
+def createShapes():
     
-#     shapeType = input('\n[1] QUADRADO\n[2] CIRCULO')
+    shapeType = input('\n[1] QUADRADO\n[2] CIRCULO')
 
-#     match shapeType :
+    match shapeType :
 
-#         case 1 :
+        case '1' :
 
-#             createSquare()
+            createSquare()
 
-#         case 2 : 
+        case '2' : 
 
-#             createCircle()
+            createCircle()
 
-# def createSquare():
+def createSquare():
 
-#     sideLength = 
+    numShapes = Quadrado.get_num_formas() + 1
 
+    sideLength = float(input('Digite o comprimento do lado: '))
+
+    shapeName = f'square{numShapes}'
+
+    shapesList[shapeName] = Quadrado(f'Quadrado{numShapes}', sideLength)
+
+    print(f'[{shapeName}] criado com sucesso!')
+
+def createCircle():
+
+    numShapes = Circulo.get_num_formas() + 1
+
+    radius = float(input("Insira o raio do circulo: "))
+
+    shapeName = f'circle{numShapes}'
+
+    shapesList[shapeName] = Circulo(f'Circulo{numShapes}', radius)
+
+    print(f'[{shapeName}] criado com sucesso!')
+
+def serchShape(shapeName):
+
+    for key in shapesList.keys() :
+
+        if shapesList[key].get_name() == shapeName :
+
+            return key
+
+
+
+while True :
+
+    print('\nFORMAS GEOMETRICAS')
+    decision = input('\n[1] CRIAR\n[2] EXIBIR \n[3] MODIFICAR\n[4} EXCLUIR\n[5] SAIR\n')
+
+    match decision :
+
+        case '1' :
+
+            createShapes()
+
+        case '2' :
             
+            for varName in shapesList.keys() :
 
+                shape = shapesList[varName]
 
+                print(shape.get_name(), end='')
 
-square1 = Quadrado('azul', 3)
-square2 = Quadrado('Laranja')
+                if isinstance(shape, Quadrado) :
+                    
+                    print(f' => lado: {shape.get_lado()}cm, area: {shape.area()}cm, {shape.perimetro()}cm')
 
-# print(f'Quadrado 1 \nCor: {square1.get_cor()}')
-# print('lado: ', square1.get_lado())
-# print('Area: ', square1.area())
-# print('Perimetro', square1.perimetro())
+                elif isinstance(shape, Circulo) :
+                                    
+                    print(f' => raio: {shape.get_raio()}cm, area: {shape.area()}cm, {shape.perimetro()}cm')
 
-square1.set_lado(0)
-print(square1.get_lado())
+        case '3' :
 
+            shapeWanted = input('Digite o nome da forma que deseja modificar: ')
 
-circle1 = Circulo('Amarelo', 4)
-circle2 = Circulo('Verde')
+            foundShape = shapesList[serchShape(shapeWanted)]
 
-print('Cor: ', circle1.get_cor())
-print('Raio: ', circle1.get_raio())
-print('Area: ', circle1.area())
-print('Perimetro: ', circle1.perimetro())
+            if isinstance(foundShape, Circulo) :
+
+                newRadius = float(input('Digite a nova medida do raio: '))
+
+                foundShape.set_raio(newRadius)
+
+            elif isinstance(foundShape, Quadrado) :
+
+                newLength = float(input('Digite a nova medida do lado: '))
+
+                foundShape.set_lado(newLength)
+
+        case '4' :
+
+            shapeWanted = input('Digite o nome da forma que deseja excluir: ')   
+
+            keyOfShape = serchShape(shapeWanted)     
+
+            del shapesList[keyOfShape]
+
+        case '5' :
+
+            break    
